@@ -31,6 +31,7 @@ export class ComplaintForm extends React.Component {
             label="Issue"
             validate={[required]}
           >
+            <option>Select One </option>
             <option>not-delivered</option>
             <option>wrong-item</option>
             <option>missing-part</option>

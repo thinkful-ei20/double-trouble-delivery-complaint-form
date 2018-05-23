@@ -2,7 +2,7 @@
 export const REQUEST_POST = 'REQUEST_POST';
 export const requestPost = () => {
   return {
-  type: REQUEST_POST
+    type: REQUEST_POST
   }
 };
 
@@ -27,8 +27,16 @@ export const errorPost = data => {
 //Async action
 export const submitPost = values => dispatch => {
   dispatch(requestPost());
-  console.log(values);
-  // fetch('https://us-central1-delivery-form-api.cloudfunctions.net/api/report', {
-  //   body:
-  // })
+  return fetch('https://us-central1-delivery-form-api.cloudfunctions.net/api/report', {
+    body: JSON.stringify(values),
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    // .then(results => dispatch(successPost(results.json())))
+    .then(results => (results.json()))
+    .then(result => dispatch(successPost(result)))
+    
+    .catch(results => dispatch(errorPost(results.json())));
 };

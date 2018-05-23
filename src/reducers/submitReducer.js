@@ -14,11 +14,11 @@ const submitReducer = (state=initialState, action) => {
   }
 
   if (action.type === SUCCESS_POST) {
-    return {
-      ...state,
+    console.log(action.data);
+    return Object.assign({}, state, {
       loading: false,
       message: action.data.message
-    }
+    });
   }
 
   if (action.type === ERROR_POST) {

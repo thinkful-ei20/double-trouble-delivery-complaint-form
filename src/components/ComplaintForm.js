@@ -1,13 +1,15 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { required, nonEmpty, mustBe5, allNumbers } from '../validators';
+import { submitPost } from '../actions';
 import Input from './Input';
 
 export class ComplaintForm extends React.Component {
 
-  onSubmit (value) {
-    console.log('props', this.props);
-    console.log(value);
+  onSubmit = values => {
+    this.props.dispatch(submitPost(values));
+    // console.log('props', this.props);
+    // console.log(value);
   }
 
   render() {
@@ -21,7 +23,11 @@ export class ComplaintForm extends React.Component {
           validate={[required, nonEmpty, mustBe5, allNumbers]}
         />
         <label>Issue</label>
-        <Field name="issue" component="select">
+        <Field
+          name="issue"
+          component="select"
+          validate=[]
+        >
           <option>not-delivered</option>
           <option>wrong-item</option>
           <option>missing-part</option>

@@ -1,13 +1,9 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { required, nonEmpty } from '../validators';
+import { required, nonEmpty, mustBe5, allNumbers } from '../validators';
 import Input from './Input';
 
 export class ComplaintForm extends React.Component {
-  constructor() {
-   super();
-    this.onSubmit = this.onSubmit.bind(this);
-  }
 
   onSubmit (value) {
     console.log('props', this.props);
@@ -22,7 +18,7 @@ export class ComplaintForm extends React.Component {
           type="text"
           label="Tracking number"
           component={Input}
-          validate={[required, nonEmpty]}
+          validate={[required, nonEmpty, mustBe5, allNumbers]}
         />
         <label>Issue</label>
         <Field name="issue" component="select">
@@ -36,7 +32,7 @@ export class ComplaintForm extends React.Component {
         <Field name="details" component="textarea"/>
         <button type="submit">Send</button>
       </form>
-    )
+    );
   }
 }
 

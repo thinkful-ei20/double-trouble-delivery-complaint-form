@@ -4,7 +4,8 @@ import React from 'react';
 export default class Input extends React.Component {
 
   render() {
-    const Element = this.props.element || "input";
+    // console.log(this.props);
+    const Element = this.props.element || 'input';
 
     let error;
     if (this.props.meta.touched && this.props.meta.error) {
@@ -18,11 +19,11 @@ export default class Input extends React.Component {
 
     return (
       <div>
-        <lable htmlFor={this.props.input.name}>
+        <label htmlFor={this.props.input.name}>
           {this.props.label}
           {error}
           {warning}
-        </lable>
+        </label>
         <Element
           {...this.props.input}
           id={this.props.input.name}
